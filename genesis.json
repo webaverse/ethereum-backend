@@ -9,7 +9,7 @@
     "clique": {
       "period": 1,
       "epoch": 1000
-    },
+    }
   },
   "difficulty": "10",
   "gasLimit": "2100000",
