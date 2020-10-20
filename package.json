@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "init": "./geth init genesis.json",
-    "dev": "./geth --http --mine --minerthreads 1 --etherbase '0x08E242bB06D85073e69222aF8273af419d19E4f6' --http.addr 172.31.16.193",
-    "start": "./geth --http --mine --minerthreads 1 --etherbase '0x08E242bB06D85073e69222aF8273af419d19E4f6' --http.addr 172.31.16.193 2>&1 >/dev/null",
+    "init": "./geth init genesis.json && cp account.json /home/ubuntu/.ethereum/keystore/UTC--2020-10-20T10-26-51.208063624Z--a57c89548a982eb90dda1d8069b73355c2effc34",
+    "start": "./geth --http --mine --minerthreads 1 --miner.gasprice 0 --etherbase '0xA57c89548A982eB90dDA1D8069b73355c2EffC34' --allow-insecure-unlock --unlock '0xA57c89548A982eB90dDA1D8069b73355c2EffC34' --password ./password --http.addr 172.31.16.193 2>&1 >/dev/null",
     "clear": "rm -Rf /home/ubuntu/.ethereum/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
