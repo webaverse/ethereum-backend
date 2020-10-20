@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "init": "./geth init genesis.json",
-    "dev": "./geth --http --mine --minerthreads 1 --etherbase '0x08E242bB06D85073e69222aF8273af419d19E4f6' --rpcaddr 172.31.16.193",
-    "start": "./geth --http --mine --minerthreads 1 --etherbase '0x08E242bB06D85073e69222aF8273af419d19E4f6' --rpcaddr 172.31.16.193 2>&1 >/dev/null",
+    "dev": "./geth --http --mine --minerthreads 1 --etherbase '0x08E242bB06D85073e69222aF8273af419d19E4f6' --http.addr 172.31.16.193",
+    "start": "./geth --http --mine --minerthreads 1 --etherbase '0x08E242bB06D85073e69222aF8273af419d19E4f6' --http.addr 172.31.16.193 2>&1 >/dev/null",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
