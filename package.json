@@ -6,8 +6,8 @@
   "scripts": {
     "init": "geth init genesis.json && cp account.json ~/.ethereum/keystore/UTC--2020-10-20T10-26-51.208063624Z--a57c89548a982eb90dda1d8069b73355c2effc34 && cp static-nodes.json ~/.ethereum/static-nodes.json",
     "start": "nohup geth --http --http.addr 172.31.0.235 --http.corsdomain '*' --mine --minerthreads 1 --miner.gasprice 0 --syncmode full --etherbase '0xA57c89548A982eB90dDA1D8069b73355c2EffC34' --allow-insecure-unlock --unlock '0xA57c89548A982eB90dDA1D8069b73355c2EffC34' --password ./password &",
-    "node": "geth --http --http.addr 172.31.0.235 --http.corsdomain '*' --miner.gasprice 0 --syncmode full",
-    "miner": "geth --mine --minerthreads 1 --miner.gasprice 0 --syncmode full --etherbase '0xA57c89548A982eB90dDA1D8069b73355c2EffC34' --allow-insecure-unlock --unlock '0xA57c89548A982eB90dDA1D8069b73355c2EffC34' --password ./password",
+    "node": "geth --http --http.addr 172.31.0.235 --http.corsdomain '*' --miner.gasprice 0 --syncmode full --networkid 1337",
+    "miner": "geth --http --http.addr 172.31.0.235 --http.corsdomain '*' --mine --minerthreads 1 --miner.gasprice 0 --syncmode full --networkid 1337 --etherbase '0xA57c89548A982eB90dDA1D8069b73355c2EffC34' --allow-insecure-unlock --unlock '0xA57c89548A982eB90dDA1D8069b73355c2EffC34' --password ./password",
     "clear": "rm -Rf /home/ubuntu/.ethereum/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
