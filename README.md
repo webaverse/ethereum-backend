@@ -2,7 +2,7 @@
 
 The Webaverse Ethereum backend consists of a side chain that we mine using Proof-of-Stake.
 
-To start a mining node, you must be an authorized miner address -- ask Avaer for the keys.
+To start a mining node, you must be an authorized miner address with a certificate installed in the `geth` data directory-- ask Avaer for the keys.
 
 After that, it's `npm start`.
 
