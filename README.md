@@ -10,6 +10,6 @@ After that, it's `npm init` to boostrap the genesis, then `npm run miner` to run
 
 The main node is at http://ethereum.exokit.org:8545, chain ID 1337. You can put these details into MetaMask as a custom RPC node to interact with the chain.
 
-Additional nodes are running at http://ethereum[1-n].exokit.org:8545, whose identities are listed in `static-nodes.json`, a file `geth` uses to bootstrap into the newtwork.
+Additional nodes are running at http://ethereum[1-n].exokit.org:8545, whose identities are listed in `static-nodes.json`, a file `geth` uses to bootstrap into the network.
 
 Replication is accomplished by having multiple nodes mine on that address at the same time. Note that geth does _not_ stream blocks to disk eagerly. A system crash will lose blocks on that node, though other miners will not be affects. To save blocks, side miners should be periodically restarted.
