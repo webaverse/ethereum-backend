@@ -4,7 +4,9 @@ The Webaverse Ethereum backend consists of a side chain that we mine using Proof
 
 To start a mining node, you must be an authorized miner address with a certificate installed in the `geth` data directory -- ask Avaer for the keys.
 
-After that, it's `npm init` to boostrap the genesis, then `npm run miner` to run a miner. `static-nodes.json` has some bootstrap nodes listed so you should be able to start syncing from those. The longest chain wins so keep in mind your chain will be "reorganized" a lot while you sync up, which is normal.
+After that, it's `npm init` to boostrap the genesis, then `npm run miner` to run a miner.
+
+`static-nodes.json` has some bootstrap nodes listed so you should be able to start syncing from those. Your chain will be "reorganized" a lot while you sync up, which is normal.
 
 The main node is at http://ethereum.exokit.org:8545, chain ID 1337. You can put these details into MetaMask as a custom RPC node to interact with the chain.
 
