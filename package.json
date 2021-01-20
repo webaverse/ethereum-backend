@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/avaer/ethereum-backend/issues"
   },
-  "homepage": "https://github.com/avaer/ethereum-backend#readme"
+  "homepage": "https://github.com/avaer/ethereum-backend#readme",
+  "dependencies": {
+    "forever": "^3.0.4"
+  }
 }
