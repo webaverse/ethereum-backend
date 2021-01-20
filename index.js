@@ -3,7 +3,7 @@ const childProcess = require('child_process');
 const os = require('os');
 
 const accountMainnetJson = JSON.parse(fs.readFileSync('./account-mainnet.json', 'utf8'));
-const accountSidechainJson = JSON.parse(fs.readFileSync('./account-sidechain.json', 'utf8'));
+const accountRinkebyJson = JSON.parse(fs.readFileSync('./account-rinkeby.json', 'utf8'));
 
 const networkInterfaces = os.networkInterfaces();
 const eth0Interface = networkInterfaces.eth0;
@@ -27,9 +27,9 @@ const cpSidechain = childProcess.spawn('geth', [
 	'--nodiscover',
 	'--syncmode', 'full',
 	'--networkid', sidechainNetworkId + '',
-	'--etherbase', '0x' + accountSidechainJson.address,
+	'--etherbase', '0x' + accountRinkebyJson.address,
 	'--allow-insecure-unlock',
-	'--unlock', '0x' + accountSidechainJson.address,
+	'--unlock', '0x' + accountRinkebyJson.address,
 	'--password', './password',
 ]);
 cpSidechain.stdout.pipe(process.stdout);
