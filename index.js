@@ -35,7 +35,13 @@ const sidechainNetworkId = 1337;
 	'--password', './password',
 ]);
 cpSidechain.stdout.pipe(process.stdout);
-cpSidechain.stderr.pipe(process.stderr); */
+cpSidechain.stderr.pipe(process.stderr);
+cpSidechain.stdout.pipe(fs.createWriteStream('./rinkeby-stdout.log', {
+  flags: 'a',
+}));
+cpSidechain.stderr.pipe(fs.createWriteStream('./rinkeby-stderr.log', {
+  flags: 'a',
+})); */
 
 // geth --datadir mainnet init genesis-mainnet.json
 // cp ./static-nodes-mainnet.json ./rinkeby/static-nodes.json
@@ -60,6 +66,12 @@ const cpMainnet = childProcess.spawn('geth', [
 ]);
 cpMainnet.stdout.pipe(process.stdout);
 cpMainnet.stderr.pipe(process.stderr);
+cpMainnet.stdout.pipe(fs.createWriteStream('./mainnet-stdout.log', {
+  flags: 'a',
+}));
+cpMainnet.stderr.pipe(fs.createWriteStream('./mainnet-stderr.log', {
+  flags: 'a',
+}));
 
 const childProcesses = [
   // cpSidechain,
