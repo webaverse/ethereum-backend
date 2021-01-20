@@ -32,9 +32,23 @@ const cpSidechain = childProcess.spawn('geth', [
 	'--allow-insecure-unlock',
 	'--unlock', '0x' + accountRinkebyJson.address,
 	'--password', './password',
-], {
-	cwd: process.cwd(),
-});
+]);
+console.log('spawn', [
+	'--http',
+	'--http.addr', eth0Address,
+	'--http.corsdomain', '*',
+	'--mine',
+	'--minerthreads', '1',
+	'--miner.gasprice', '0',
+	'--targetgaslimit', '1000000000',
+	'--nodiscover',
+	'--syncmode', 'full',
+	'--networkid', sidechainNetworkId + '',
+	'--etherbase', '0x' + accountRinkebyJson.address,
+	'--allow-insecure-unlock',
+	'--unlock', '0x' + accountRinkebyJson.address,
+	'--password', './password',
+]);
 cpSidechain.stdout.pipe(process.stdout);
 cpSidechain.stderr.pipe(process.stderr);
 
