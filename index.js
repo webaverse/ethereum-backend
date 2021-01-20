@@ -54,6 +54,9 @@ console.log('spawn', [
 cpSidechain.stdout.pipe(process.stdout);
 cpSidechain.stderr.pipe(process.stderr);
 
+process.on('SIGINT', signal => {
+  cpSidechain.kill('SIGINT');
+});
 process.on('SIGTERM', signal => {
   cpSidechain.kill('SIGTERM');
 });
