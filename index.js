@@ -17,24 +17,7 @@ const sidechainNetworkId = 1337;
 // cp ./static-nodes-rinkeby.json ./rinkeby/static-nodes.json
 // cp ./account-rinkeby.json ./rinkeby/keystore/UTC--2020-10-20T10-26-51.208063624Z--a57c89548a982eb90dda1d8069b73355c2effc34
 // geth --datadir rinkeby --http --http.addr 172.31.2.5 --http.corsdomain '*' --mine --minerthreads 1 --miner.gasprice 0 --targetgaslimit '1000000000' --syncmode full --networkid 1337 --etherbase '0xa57c89548a982eb90dda1d8069b73355c2effc34' --allow-insecure-unlock --unlock '0xa57c89548a982eb90dda1d8069b73355c2effc34' --password ./password
-const cpSidechain = childProcess.spawn('geth', [
-	'--datadir', 'rinkeby',
-	'--http',
-	'--http.addr', eth0Address,
-	'--http.corsdomain', '*',
-	'--mine',
-	'--minerthreads', '1',
-	'--miner.gasprice', '0',
-	'--targetgaslimit', '1000000000',
-	'--nodiscover',
-	'--syncmode', 'full',
-	'--networkid', sidechainNetworkId + '',
-	'--etherbase', '0x' + accountRinkebyJson.address,
-	'--allow-insecure-unlock',
-	'--unlock', '0x' + accountRinkebyJson.address,
-	'--password', './password',
-]);
-console.log('spawn', [
+/* const cpSidechain = childProcess.spawn('geth', [
 	'--datadir', 'rinkeby',
 	'--http',
 	'--http.addr', eth0Address,
@@ -52,20 +35,13 @@ console.log('spawn', [
 	'--password', './password',
 ]);
 cpSidechain.stdout.pipe(process.stdout);
-cpSidechain.stderr.pipe(process.stderr);
-
-process.on('SIGINT', signal => {
-  cpSidechain.kill('SIGINT');
-});
-process.on('SIGTERM', signal => {
-  cpSidechain.kill('SIGTERM');
-});
+cpSidechain.stderr.pipe(process.stderr); */
 
 // geth --datadir mainnet init genesis-mainnet.json
 // cp ./static-nodes-mainnet.json ./rinkeby/static-nodes.json
 // cp ./account-mainnet.json ./mainnet/keystore/UTC--2021-01-20T03-14-48.452051307Z--aae22cabdb635d6bfa1f6d19f921c783c90540c2
 // geth --datadir mainnet --http --http.addr 172.31.2.5 --http.corsdomain '*' --mine --minerthreads 1 --miner.gasprice 0 --targetgaslimit '1000000000' --syncmode full --networkid 1338 --etherbase '0xaae22cabdb635d6bfa1f6d19f921c783c90540c2' --allow-insecure-unlock --unlock '0xaae22cabdb635d6bfa1f6d19f921c783c90540c2' --password ./password
-/* const cpMainnet = childProcess.spawn('geth', [
+const cpMainnet = childProcess.spawn('geth', [
   '--datadir', 'mainnet',
 	'--http',
 	'--http.addr', eth0Address,
@@ -81,4 +57,22 @@ process.on('SIGTERM', signal => {
 	'--allow-insecure-unlock',
 	'--unlock', '0x' + accountMainnetJson.address,
 	'--password', './password',
-]); */
+]);
+cpMainnet.stdout.pipe(process.stdout);
+cpMainnet.stderr.pipe(process.stderr);
+
+const childProcesses = [
+  // cpSidechain,
+  cpMainnet,
+];
+
+process.on('SIGINT', signal => {
+	for (const cp of childProcesses) {
+    cp.kill('SIGINT');
+  }
+});
+process.on('SIGTERM', signal => {
+	for (const cp of childProcesses) {
+    cp.kill('SIGTERM');
+  }
+});
