@@ -31,7 +31,7 @@ const cpSidechain = childProcess.spawn('geth', [
 	'--etherbase', '0x' + accountRinkebyJson.address,
 	'--allow-insecure-unlock',
 	'--unlock', '0x' + accountRinkebyJson.address,
-	'--password', 'password',
+	'--password', './password',
 ], {
 	cwd: process.cwd(),
 });
