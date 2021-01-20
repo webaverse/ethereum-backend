@@ -54,6 +54,10 @@ console.log('spawn', [
 cpSidechain.stdout.pipe(process.stdout);
 cpSidechain.stderr.pipe(process.stderr);
 
+process.on('SIGTERM', signal => {
+  cpSidechain.kill('SIGTERM');
+});
+
 // geth --datadir mainnet init genesis-mainnet.json
 // cp ./static-nodes-mainnet.json ./rinkeby/static-nodes.json
 // cp ./account-mainnet.json ./mainnet/keystore/UTC--2021-01-20T03-14-48.452051307Z--aae22cabdb635d6bfa1f6d19f921c783c90540c2
