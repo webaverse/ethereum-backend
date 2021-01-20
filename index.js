@@ -32,7 +32,9 @@ const cpSidechain = childProcess.spawn('geth', [
 	'--allow-insecure-unlock',
 	'--unlock', '0x' + accountRinkebyJson.address,
 	'--password', './password',
-]);
+], {
+	cwd: process.cwd(),
+});
 cpSidechain.stdout.pipe(process.stdout);
 cpSidechain.stderr.pipe(process.stderr);
 
