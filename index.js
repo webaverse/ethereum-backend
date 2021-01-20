@@ -6,7 +6,7 @@ const accountMainnetJson = JSON.parse(fs.readFileSync('./account-mainnet.json', 
 const accountRinkebyJson = JSON.parse(fs.readFileSync('./account-rinkeby.json', 'utf8'));
 
 const networkInterfaces = os.networkInterfaces();
-const eth0Interface = networkInterfaces.eth0;
+const eth0Interface = networkInterfaces.eth0.find(spec => spec.family === 'IPv4');
 const eth0Address = eth0Interface.address;
 console.log('got address', eth0Address);
 
