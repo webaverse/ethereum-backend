@@ -18,6 +18,7 @@ const sidechainNetworkId = 1337;
 // cp ./account-rinkeby.json ./rinkeby/keystore/UTC--2020-10-20T10-26-51.208063624Z--a57c89548a982eb90dda1d8069b73355c2effc34
 // geth --datadir rinkeby --http --http.addr 172.31.2.5 --http.corsdomain '*' --mine --minerthreads 1 --miner.gasprice 0 --targetgaslimit '1000000000' --syncmode full --networkid 1337 --etherbase '0xa57c89548a982eb90dda1d8069b73355c2effc34' --allow-insecure-unlock --unlock '0xa57c89548a982eb90dda1d8069b73355c2effc34' --password ./password
 const cpSidechain = childProcess.spawn('geth', [
+	'--datadir', 'rinkeby',
 	'--http',
 	'--http.addr', eth0Address,
 	'--http.corsdomain', '*',
@@ -34,6 +35,7 @@ const cpSidechain = childProcess.spawn('geth', [
 	'--password', './password',
 ]);
 console.log('spawn', [
+	'--datadir', 'rinkeby',
 	'--http',
 	'--http.addr', eth0Address,
 	'--http.corsdomain', '*',
@@ -57,6 +59,7 @@ cpSidechain.stderr.pipe(process.stderr);
 // cp ./account-mainnet.json ./mainnet/keystore/UTC--2021-01-20T03-14-48.452051307Z--aae22cabdb635d6bfa1f6d19f921c783c90540c2
 // geth --datadir mainnet --http --http.addr 172.31.2.5 --http.corsdomain '*' --mine --minerthreads 1 --miner.gasprice 0 --targetgaslimit '1000000000' --syncmode full --networkid 1338 --etherbase '0xaae22cabdb635d6bfa1f6d19f921c783c90540c2' --allow-insecure-unlock --unlock '0xaae22cabdb635d6bfa1f6d19f921c783c90540c2' --password ./password
 /* const cpMainnet = childProcess.spawn('geth', [
+  '--datadir', 'mainnet',
 	'--http',
 	'--http.addr', eth0Address,
 	'--http.corsdomain', '*',
