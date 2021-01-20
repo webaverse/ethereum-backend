@@ -82,13 +82,13 @@ const childProcesses = [
   cpMainnet,
 ];
 
-process.on('SIGINT', signal => {
-	for (const cp of childProcesses) {
-    cp.kill('SIGINT');
-  }
-});
-process.on('SIGTERM', signal => {
-	for (const cp of childProcesses) {
-    cp.kill('SIGTERM');
-  }
+[
+  'SIGINT',
+  'SIGTERM',
+].forEach(s => {
+  process.on(s, signal => {
+		for (const cp of childProcesses) {
+	    cp.kill(s);
+	  }
+	});
 });
