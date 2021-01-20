@@ -31,6 +31,8 @@ const cpSidechain = childProcess.spawn('geth', [
 	'--unlock', '0x' + accountSidechainJson.address,
 	'--password', './password',
 ]);
+cpSidechain.stdout.pipe(process.stdout);
+cpSidechain.stderr.pipe(process.stderr);
 
 // geth --datadir mainnet init genesis-mainnet.json
 // cp ./static-nodes-mainnet.json ./rinkeby/static-nodes.json
