@@ -39,6 +39,10 @@ https://rinkebysidechain.exokit.org
 
 Note that the port on these is the standard HTTPS port, `443`.
 
+## contracts
+
+The contracts we deploy onto all chains are available at https://github.com/webaverse/contracts.
+
 ## note on atomic saves
 
 Replication is accomplished by having multiple nodes mine on that address at the same time.
