@@ -10,7 +10,7 @@ After that, it's `npm init` to boostrap the genesis, then `npm run miner` to run
 
 Replication is accomplished by having multiple nodes mine on that address at the same time. Note that geth does _not_ stream blocks to disk eagerly. A system crash will lose blocks on that node, though other miners will not be affects. To save blocks, side miners should be periodically restarted.
 
-## chains
+## blockchains
 
 There are currently 4 chains that we use:
 
