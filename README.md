@@ -6,7 +6,7 @@ To start a mining node, you must be an authorized miner address with a certifica
 
 After that, it's `npm init` to boostrap the genesis, then `npm run miner` to run a miner.
 
-`static-nodes-mainnet.json` and `static-nodes-rinkeby.json` have some bootstrap nodes listed so you should be able to start syncing from those. Your chain will be "reorganized" a lot while you sync up, which is normal.
+`static-nodes-mainnet.json`` has some bootstrap nodes listed so you should be able to start syncing from those. Your chain will be "reorganized" a lot while you sync up, which is normal.
 
 Replication is accomplished by having multiple nodes mine on that address at the same time. Note that geth does _not_ stream blocks to disk eagerly. A system crash will lose blocks on that node, though other miners will not be affects. To save blocks, side miners should be periodically restarted.
 
