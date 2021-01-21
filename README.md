@@ -27,10 +27,17 @@ There are currently 4 chains that we use:
 - `rinkeby` (ETH Rinkeby)
 - `rinkebysidechain` (our Geth nodes)
 
-mainnetsidechain: http://ethereum1.exokit.org:8545 chainId 1338 
-rinkebysidechain: http://ethereum1.exokit.org:8546 chainId 1337
+`mainnetsidechain`: http://ethereum1.exokit.org:8545 chainId 1338 
+`rinkebysidechain`: http://ethereum1.exokit.org:8546 chainId 1337
 
 You can put these details into MetaMask directly to interact with the chains. There are no gas fees.
+
+These networks also have HTTPS proxy support for secure frontend development:
+
+https://mainnetsidechain.exokit.org
+https://rinkebysidechain.exokit.org
+
+Note that the port on these is the standard HTTPS port, `443`.
 
 ## note on atomic saves
 
