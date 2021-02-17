@@ -3,7 +3,7 @@ const childProcess = require('child_process');
 const os = require('os');
 
 const accountMainnetJson = JSON.parse(fs.readFileSync('./account-mainnet.json', 'utf8'));
-const accountRinkebyJson = JSON.parse(fs.readFileSync('./account-rinkeby.json', 'utf8'));
+// const accountRinkebyJson = JSON.parse(fs.readFileSync('./account-rinkeby.json', 'utf8'));
 
 const networkInterfaces = os.networkInterfaces();
 const eth0Interface = networkInterfaces.eth0.find(spec => spec.family === 'IPv4');
