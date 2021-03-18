@@ -49,3 +49,15 @@ The contracts we deploy onto all chains are available at https://github.com/weba
 Replication is accomplished by having multiple nodes mine on that address at the same time.
 
 `geth` does _not_ stream blocks to disk eagerly. A system crash will lose blocks on that node, though other miners will not be affected.
+
+## restarting geth servers
+
+Therefore it is important that any restart of these nodes follows the correct order:
+
+```
+for (i in [2, 3, 1]) { // order matters
+1. shut down node i with SIGTERM
+2. make sure node i saved its state in the logs
+3. start node i again
+4. ensure node i is replicating and synced and do not proceed unless it is
+```
