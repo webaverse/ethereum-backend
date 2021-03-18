@@ -58,6 +58,7 @@ const cpMainnet = childProcess.spawn('geth', [
 	'--http.corsdomain', '*',
 	'--http.port', '8545',
   '--ws',
+  '--ws.addr', eth0Address,
   '--ws.port', '8547',
 	'--port', '30303',
 	'--mine',
