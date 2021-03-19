@@ -61,3 +61,21 @@ for (i in [2, 3, 1]) { // order matters
 3. start node i again
 4. ensure node i is replicating and synced and do not proceed unless it is
 ```
+
+## how transfers work
+
+There are two parallel blockchains for each Ethereum source of truth. There are two sources of truth (mainnet and rinkeby) and they do not interact. Therefore there are 4 chains.
+
+```
+mainnet
+mainnetsidechain
+rinkeby
+rinkebysidechain
+```
+
+The common case is `mainnet` (ETH) and `mainnetsidechain` (our `geth`).
+
+They talk to each other via a signature scheme enforced in the contracts. Basically, each contract is deployed twice, once on each chain. We mint on the side chain usually (enforced by constructor arguments). Transfers occur via assignment of the token away from the user to the contract's address, logging a deposit event on the sidechain. The client then asks the signing server to read the sidechain, and sign off on the fact that this deposit ocurred. If successful the signature is sent back to the client. The client then takes that signature and submits it in a mainnet transaction. This must be confirmed by the user in metamask. IF the user accepts, the mainnet should accept teh signature and assign ownership of the token to the user on mainnet.
+
+
+
