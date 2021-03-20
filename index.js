@@ -12,6 +12,7 @@ console.log('got address', eth0Address);
 
 const mainnetNetworkId = 1338;
 const sidechainNetworkId = 1337;
+const isMiner = true;
 
 // geth --datadir rinkeby init genesis-rinkeby.json
 // cp ./static-nodes-rinkeby.json ./rinkeby/static-nodes.json
@@ -26,9 +27,6 @@ const cpSidechain = childProcess.spawn('geth', [
   '--ws',
   '--ws.port', '8548',
 	'--port', '30304',
-	'--mine',
-	'--minerthreads', '1',
-	'--miner.gasprice', '0',
 	'--targetgaslimit', '1000000000',
 	'--nodiscover',
 	'--syncmode', 'full',
@@ -37,7 +35,11 @@ const cpSidechain = childProcess.spawn('geth', [
 	'--allow-insecure-unlock',
 	'--unlock', '0x' + accountRinkebyJson.address,
 	'--password', './password',
-]);
+].concat(isMiner ? [
+  '--mine',
+	'--minerthreads', '1',
+	'--miner.gasprice', '0',
+] : []));
 cpSidechain.stdout.pipe(process.stdout);
 cpSidechain.stderr.pipe(process.stderr);
 cpSidechain.stdout.pipe(fs.createWriteStream('./rinkeby-stdout.log', {
@@ -60,9 +62,6 @@ const cpMainnet = childProcess.spawn('geth', [
   '--ws',
   '--ws.port', '8547',
 	'--port', '30303',
-	'--mine',
-	'--minerthreads', '1',
-	'--miner.gasprice', '0',
 	'--targetgaslimit', '1000000000',
 	'--nodiscover',
 	'--syncmode', 'full',
@@ -71,7 +70,11 @@ const cpMainnet = childProcess.spawn('geth', [
 	'--allow-insecure-unlock',
 	'--unlock', '0x' + accountMainnetJson.address,
 	'--password', './password',
-]);
+].concat(isMiner ? [
+  '--mine',
+	'--minerthreads', '1',
+	'--miner.gasprice', '0',
+] : []));
 cpMainnet.stdout.pipe(process.stdout);
 cpMainnet.stderr.pipe(process.stderr);
 cpMainnet.stdout.pipe(fs.createWriteStream('./mainnet-stdout.log', {
