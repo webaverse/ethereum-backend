@@ -3,7 +3,7 @@ const childProcess = require('child_process');
 const os = require('os');
 
 const accountMainnetJson = JSON.parse(fs.readFileSync('./account-mainnet.json', 'utf8'));
-// const accountRinkebyJson = JSON.parse(fs.readFileSync('./account-rinkeby.json', 'utf8'));
+const accountRinkebyJson = JSON.parse(fs.readFileSync('./account-rinkeby.json', 'utf8'));
 
 const networkInterfaces = os.networkInterfaces();
 const eth0Interface = networkInterfaces.eth0.find(spec => spec.family === 'IPv4');
@@ -17,7 +17,7 @@ const sidechainNetworkId = 1337;
 // cp ./static-nodes-rinkeby.json ./rinkeby/static-nodes.json
 // cp ./account-rinkeby.json ./rinkeby/keystore/UTC--2020-10-20T10-26-51.208063624Z--a57c89548a982eb90dda1d8069b73355c2effc34
 // geth --datadir rinkeby --http --http.addr 172.31.2.5 --http.corsdomain '*' --mine --minerthreads 1 --miner.gasprice 0 --targetgaslimit '1000000000' --syncmode full --networkid 1337 --etherbase '0xa57c89548a982eb90dda1d8069b73355c2effc34' --allow-insecure-unlock --unlock '0xa57c89548a982eb90dda1d8069b73355c2effc34' --password ./password
-/* const cpSidechain = childProcess.spawn('geth', [
+const cpSidechain = childProcess.spawn('geth', [
 	'--datadir', 'rinkeby',
 	'--http',
 	'--http.addr', eth0Address,
@@ -45,7 +45,7 @@ cpSidechain.stdout.pipe(fs.createWriteStream('./rinkeby-stdout.log', {
 }));
 cpSidechain.stderr.pipe(fs.createWriteStream('./rinkeby-stderr.log', {
   flags: 'a',
-})); */
+}));
 
 // geth --datadir mainnet init genesis-mainnet.json
 // cp ./static-nodes-mainnet.json ./mainnet/static-nodes.json
