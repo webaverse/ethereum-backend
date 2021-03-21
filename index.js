@@ -8,7 +8,6 @@ const accountRinkebyJson = JSON.parse(fs.readFileSync('./account-rinkeby.json', 
 const networkInterfaces = os.networkInterfaces();
 const eth0Interface = networkInterfaces.eth0.find(spec => spec.family === 'IPv4');
 const eth0Address = eth0Interface.address;
-console.log('got address', eth0Address);
 
 const mainnetNetworkId = 1338;
 const sidechainNetworkId = 1337;
