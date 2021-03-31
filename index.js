@@ -94,9 +94,26 @@ const childProcesses = [
   'SIGINT',
   'SIGTERM',
 ].forEach(s => {
-  process.on(s, signal => {
+  process.on(s, async signal => {
 		for (const cp of childProcesses) {
 	    cp.kill(s);
+
+      await waitForKill(cp);
 	  }
 	});
 });
+
+async function waitForKill(childProcess, cycle = 100) {
+  let resolve;
+  const promise = new Promise(r => resolve = r);
+
+  setInterval(() => {
+    try {
+      process.kill(cp.pid, 0);
+    } catch(e) {
+      resolve();
+    }
+  }, cycle);
+
+  return promise;
+}
