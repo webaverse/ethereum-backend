@@ -27,18 +27,18 @@ const cpSidechain = childProcess.spawn('geth', [
   '--ws.addr', eth0Address,
   '--ws.port', '8548',
 	'--port', '30304',
-	'--targetgaslimit', '1000000000',
 	'--nodiscover',
 	'--syncmode', 'full',
 	'--networkid', sidechainNetworkId + '',
-	'--etherbase', '0x' + accountRinkebyJson.address,
 	'--allow-insecure-unlock',
 	'--unlock', '0x' + accountRinkebyJson.address,
 	'--password', './password',
 ].concat(isMiner ? [
   '--mine',
-	'--minerthreads', '1',
+	'--miner.threads', '1',
+	'--miner.etherbase', '0x' + accountRinkebyJson.address,
 	'--miner.gasprice', '0',
+	'--miner.gaslimit', '1000000000',
 ] : []));
 cpSidechain.stdout.pipe(process.stdout);
 cpSidechain.stderr.pipe(process.stderr);
@@ -63,18 +63,18 @@ const cpMainnet = childProcess.spawn('geth', [
   '--ws.addr', eth0Address,
   '--ws.port', '8547',
 	'--port', '30303',
-	'--targetgaslimit', '1000000000',
 	'--nodiscover',
 	'--syncmode', 'full',
 	'--networkid', mainnetNetworkId + '',
-	'--etherbase', '0x' + accountMainnetJson.address,
 	'--allow-insecure-unlock',
 	'--unlock', '0x' + accountMainnetJson.address,
 	'--password', './password',
 ].concat(isMiner ? [
   '--mine',
-	'--minerthreads', '1',
+	'--miner.threads', '1',
+	'--miner.etherbase', '0x' + accountMainnetJson.address,
 	'--miner.gasprice', '0',
+	'--miner.gaslimit', '1000000000',
 ] : []));
 cpMainnet.stdout.pipe(process.stdout);
 cpMainnet.stderr.pipe(process.stderr);
