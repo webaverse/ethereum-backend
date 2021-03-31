@@ -86,7 +86,7 @@ cpMainnet.stderr.pipe(fs.createWriteStream('./mainnet-stderr.log', {
 }));
 
 const childProcesses = [
-  // cpSidechain,
+  cpSidechain,
   cpMainnet,
 ];
 
