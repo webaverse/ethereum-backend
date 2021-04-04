@@ -103,7 +103,7 @@ const childProcesses = [
 	});
 });
 
-async function waitForKill(childProcess, cycle = 100) {
+function waitForKill(childProcess, cycle = 100) {
   let resolve;
   const promise = new Promise(r => resolve = r);
 
