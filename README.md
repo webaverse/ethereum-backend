@@ -1,25 +1,151 @@
-# ethereum-backend
+---
+id: ethereum-backend
+title: Ethereum Backend
+---
+# Ethereum Backend - Quick Start Guide
+
+## Introduction
 
 The Webaverse Ethereum backend consists of a side chain that we mine using Proof-of-Stake.
 
-To start a mining node, you must be an authorized miner address with a certificate installed in the `geth` data directory -- ask Avaer for the keys.
+To start a mining node, you must be an authorized miner address with a certificate installed in the  `geth`  data directory -- ask [Avaer](https://github.com/avaer) for the keys.
 
 To validate/replicate/sync you don't need any keys.
 
-## commands
+---
+
+ ## Before You Begin
+ 
+Before you begin we recommend you read about the basic building blocks that assemble an application:
+* Git - [Download & Install Git](https://git-scm.com/downloads). OSX and Linux machines typically have this already installed.
+* Node.js - Start by going through [Node.js Official Website](http://nodejs.org/) and this [StackOverflow Thread](http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js), which should get you going with the Node.js platform in no time.
+
+---
+
+## Quick Install
+
+Once you've installed all basic building blocks, you're just a few steps away from starting to develop your application. To clone and run this repository excute these command using command line:
+
+
+```bash
+
+# Clone this repository
+
+git clone https://github.com/webaverse/ethereum-backend.git
+
+# Go into the repository
+
+cd ethereum-backend/
+
+```
+To install the dependencies, run this in the application folder from the command-line:
+```bash
+
+# Install dependencies
+
+$ npm install
+
+```
+---
+
+## Running Your Application
+
+
+Run your application using npm:
+
+```bash
+
+# Run the app (in background)
+
+$ npm start
+
+```
+This command will run your application in background using [forever](https://www.npmjs.com/package/forever)
+
+>You can stop this app by running this command:
+```bash
+
+# Stop the app running in background
+
+$ npm stop
+
+```
+
+### Doesn't Re-compile automatically
+
+The application won't hot reload itself automatically if there is any changes to any file. You have re-run application to effect new changes.
+
+```bash
+
+# First stop the application
+
+$ npm stop
+
+# Then run it again
+
+$ npm start
+
+```
+---
+
+## Development Environment Setup
+
+  
+> Preffered tool for development is [VSCode](https://code.visualstudio.com/download)
+  
+### Directory Structure
+
+```bash
+
+**Root**
+
+├───	index.js <--- Main Application Logic Resides Here
+
+```
+---
+### Setup ESLint
+
+
+* Go to your extensions tab and search for `ESLINT`
+  
+![enter image description here](https://res.cloudinary.com/practicaldev/image/fetch/s--gWL807Xl--/c_limit,f_auto,fl_progressive,q_auto,w_880/https://thepracticaldev.s3.amazonaws.com/i/9rmkgbk7nio6ravjm0rx.PNG)
+
+```bash
+
+npm install eslint -g
+
+eslint --init
+
+```
+
+---
+### Setup Cutom Host
+
+Please follow this [tutorial](https://github.com/abeersaqib/webaverse-docs/blob/main/setup-custom-host.md) to setup custom host.
+
+---
+
+## Commands
 
 Here is how to bootstrap a mainnet validation node:
 
 ```bash
+
 geth --datadir mainnet init genesis-mainnet.json
+
 cp ./static-nodes-mainnet.json ./mainnet/static-nodes.json
+
 cp account-mainnet.json ./mainnet/keystore/UTC--2021-02-17T10-32-36.272770958Z--bb0827ee9b0b459e1b5dd6dbea0f55bf578dbbd2
+
 geth --datadir mainnet --http --http.addr 172.31.2.5 --http.corsdomain '*' --syncmode full --networkid 1338
+
 ```
 
 `static-nodes-mainnet.json`` has some bootstrap nodes listed so you should be able to start syncing from those. Your chain will be "reorganized" a lot while you sync up, which is normal.
 
-## blockchains
+---
+
+## Blockchains
 
 There are currently 4 chains that we use:
 
@@ -40,17 +166,21 @@ https://rinkebysidechain.exokit.org
 
 Note that the port on these is the standard HTTPS port, `443`.
 
-## contracts
+---
+
+## Contracts
 
 The contracts we deploy onto all chains are available at https://github.com/webaverse/contracts.
 
-## note on atomic saves
+---
+## Note: Atomic saves
 
 Replication is accomplished by having multiple nodes mine on that address at the same time.
 
 `geth` does _not_ stream blocks to disk eagerly. A system crash will lose blocks on that node, though other miners will not be affected.
 
-## restarting geth servers
+---
+## Restarting geth Servers
 
 Therefore it is important that any restart of these nodes follows the correct order:
 
@@ -61,8 +191,9 @@ for (i in [2, 3, 1]) { // order matters
 3. start node i again
 4. ensure node i is replicating and synced and do not proceed unless it is
 ```
+---
 
-## how transfers work
+## How Transfers Work
 
 There are two parallel blockchains for each Ethereum source of truth. There are two sources of truth (mainnet and rinkeby) and they do not interact. Therefore there are 4 chains.
 
